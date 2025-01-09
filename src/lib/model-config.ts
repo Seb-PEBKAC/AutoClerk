@@ -218,9 +218,9 @@ export const getModelConfigurations = (): ModelConfigurations => ({
     "open-mistral-7b": null,
   },
   groq: {
-    "llama-3.1-70b-versatile": {
-      name: "Groq LLaMA 3.1",
-      temperature: 0.7,
+    "llama-3.3-70b-versatile": {
+      name: "Groq LLaMA 3.3 70B Versatile",
+      temperature: 1,
       maxTokens: 32768,
       topP: 1,
       frequencyPenalty: 0,
@@ -229,10 +229,39 @@ export const getModelConfigurations = (): ModelConfigurations => ({
       outputTokenCost: 0,
       isTemplate: true,
     },
-    "llama-3.1-405b-reasoning": null,
-    "llama-3.1-8b-instant": null,
-    "mixtral-8x7b-32768": null,
-    "gemma2-9b-it": null,
+    "llama-3.3-70b-specdec": {
+      name: "Groq LLaMA 3.3 70B SpecDec",
+      temperature: 1,
+      maxTokens: 8192,
+      topP: 1,
+      frequencyPenalty: 0,
+      presencePenalty: 0,
+      inputTokenCost: 0,
+      outputTokenCost: 0,
+      isTemplate: true,
+    },
+    "mixtral-8x7b-32768": {
+      name: "Groq Mixtral 8x7B",
+      temperature: 1,
+      maxTokens: 32768,
+      topP: 1,
+      frequencyPenalty: 0,
+      presencePenalty: 0,
+      inputTokenCost: 0,
+      outputTokenCost: 0,
+      isTemplate: true,
+    },
+    "llama-3.2-3b-preview": {
+      name: "Groq LLaMA 3.2 3B Preview",
+      temperature: 1,
+      maxTokens: 8192,
+      topP: 1,
+      frequencyPenalty: 0,
+      presencePenalty: 0,
+      inputTokenCost: 0,
+      outputTokenCost: 0,
+      isTemplate: true,
+    }
   },
   ollama: {
     codegemma: null,
@@ -317,4 +346,39 @@ export const getModelConfigurations = (): ModelConfigurations => ({
   other: {
     other: null,
   },
+  cerebras: {
+    "llama-3.3-70b": {
+      name: "Cerebras LLaMA 3.3 70B",
+      temperature: 0.5,
+      maxTokens: 8192,
+      topP: 1,
+      frequencyPenalty: 0,
+      presencePenalty: 0,
+      inputTokenCost: 0,
+      outputTokenCost: 0,
+      isTemplate: true,
+    },
+    "llama3.1-8b": {
+      name: "Cerebras LLaMA 3.1 8B",
+      temperature: 0.7,
+      maxTokens: 8192,
+      topP: 1,
+      frequencyPenalty: 0,
+      presencePenalty: 0,
+      inputTokenCost: 0,
+      outputTokenCost: 0,
+      isTemplate: true,
+    },
+    "llama3.1-70b": {
+      name: "Cerebras LLaMA 3.1 70B",
+      temperature: 0.7,
+      maxTokens: 8192,
+      topP: 1,
+      frequencyPenalty: 0,
+      presencePenalty: 0,
+      inputTokenCost: 0,
+      outputTokenCost: 0,
+      isTemplate: true,
+    }
+  }
 });

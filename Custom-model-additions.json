@@ -1,0 +1,84 @@
+{
+  "cerebras": {
+    "endpoints": [
+      {
+        "model": "llama-3.3-70b",
+        "url": "https://api.cerebras.ai/v1/chat/completions",
+        "config": {
+          "stream": true,
+          "max_tokens": 8192,
+          "temperature": 0.5,
+          "top_p": 1
+        }
+      },
+      {
+        "model": "llama3.1-8b",
+        "url": "https://api.cerebras.ai/v1/chat/completions",
+        "config": {
+          "stream": true,
+          "max_tokens": 8192,
+          "temperature": 0.7,
+          "top_p": 1
+        }
+      },
+      {
+        "model": "llama3.1-70b",
+        "url": "https://api.cerebras.ai/v1/chat/completions",
+        "config": {
+          "stream": true,
+          "max_tokens": 8192,
+          "temperature": 0.7,
+          "top_p": 1
+        }
+      }
+    ]
+  },
+  "groq": {
+    "endpoints": [
+      {
+        "model": "llama-3.3-70b-versatile",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "config": {
+          "temperature": 1,
+          "max_tokens": 32768,
+          "top_p": 1,
+          "stream": true,
+          "stop": null
+        }
+      },
+      {
+        "model": "llama-3.3-70b-specdec",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "config": {
+          "temperature": 1,
+          "max_tokens": 8192,
+          "top_p": 1,
+          "stream": true,
+          "stop": null
+        }
+      },
+      {
+        "model": "mixtral-8x7b-32768",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "config": {
+          "temperature": 1,
+          "max_tokens": 32768,
+          "top_p": 1,
+          "stream": true,
+          "stop": null
+        }
+      },
+      {
+        "model": "llama-3.2-3b-preview",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "config": {
+          "temperature": 1,
+          "max_tokens": 8192,
+          "top_p": 1,
+          "stream": true,
+          "stop": null
+        }
+      }
+    ]
+  }
+} 

@@ -45,6 +45,34 @@ async function main() {
     }
   }
 
+  // Add Cerebras models
+  await prisma.modelCost.createMany({
+    data: [
+      {
+        provider: "cerebras",
+        model: "llama-3.3-70b",
+        inputTokenCost: 0.5, // Cost per million tokens
+        outputTokenCost: 0.5, // Cost per million tokens
+        validFrom: new Date(),
+      },
+      {
+        provider: "cerebras",
+        model: "llama3.1-8b",
+        inputTokenCost: 0.2,
+        outputTokenCost: 0.2,
+        validFrom: new Date(),
+      },
+      {
+        provider: "cerebras",
+        model: "llama3.1-70b",
+        inputTokenCost: 0.4,
+        outputTokenCost: 0.4,
+        validFrom: new Date(),
+      },
+    ],
+    skipDuplicates: true,
+  });
+
   console.log("Seed data inserted successfully");
 }
 

@@ -1,0 +1,128 @@
+curl --location 'https://api.cerebras.ai/v1/chat/completions' \
+--header 'Content-Type: application/json' \
+--header "Authorization: Bearer ${CEREBRAS_API_KEY}" \
+--data '{
+  "model": "llama-3.3-70b",
+  "stream": true,
+  "max_tokens": 8192,
+  "temperature": 0.5,
+  "top_p": 1,
+  "messages": [
+    {
+      "role": "system",
+      "content": ""
+    }
+  ]
+}'
+
+curl --location 'https://api.cerebras.ai/v1/chat/completions' \
+--header 'Content-Type: application/json' \
+--header "Authorization: Bearer ${CEREBRAS_API_KEY}" \
+--data '{
+  "model": "llama3.1-8b",
+  "stream": true,
+  "max_tokens": 8192,
+  "temperature": 0.7,
+  "top_p": 1,
+  "messages": [
+    {
+      "role": "system",
+      "content": ""
+    }
+  ]
+}'
+
+curl --location 'https://api.cerebras.ai/v1/chat/completions' \
+--header 'Content-Type: application/json' \
+--header "Authorization: Bearer ${CEREBRAS_API_KEY}" \
+--data '{
+  "model": "llama3.1-70b",
+  "stream": true,
+  "max_tokens": 8192,
+  "temperature": 0.7,
+  "top_p": 1,
+  "messages": [
+    {
+      "role": "system",
+      "content": ""
+    }
+  ]
+}'
+
+curl "https://api.groq.com/openai/v1/chat/completions" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${GROQ_API_KEY}" \
+  -d '{
+         "messages": [
+           {
+             "role": "user",
+             "content": ""
+           }
+         ],
+         "model": "llama-3.3-70b-versatile",
+         "temperature": 1,
+         "max_tokens": 32768,
+         "top_p": 1,
+         "stream": true,
+         "stop": null
+       }'
+  
+curl "https://api.groq.com/openai/v1/chat/completions" \
+-X POST \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${GROQ_API_KEY}" \
+-d '{
+    "messages": [
+    {
+        "role": "user",
+        "content": ""
+    }
+    ],
+    "model": "llama-3.3-70b-specdec",
+    "temperature": 1,
+    "max_tokens": 8192,
+    "top_p": 1,
+    "stream": true,
+    "stop": null
+}'
+
+curl "https://api.groq.com/openai/v1/chat/completions" \
+-X POST \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${GROQ_API_KEY}" \
+-d '{
+        "messages": [
+            {
+            "role": "user",
+            "content": ""
+            }
+        ],
+        "model": "mixtral-8x7b-32768",
+        "temperature": 1,
+        "max_tokens": 32768,
+        "top_p": 1,
+        "stream": true,
+        "stop": null
+        }'
+
+curl "https://api.groq.com/openai/v1/chat/completions" \
+-X POST \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${GROQ_API_KEY}" \
+-d '{
+        "messages": [
+            {
+            "role": "user",
+            "content": ""
+            }
+        ],
+        "model": "llama-3.2-3b-preview",
+        "temperature": 1,
+        "max_tokens": 8192,
+        "top_p": 1,
+        "stream": true,
+        "stop": null
+        }'
+
+       

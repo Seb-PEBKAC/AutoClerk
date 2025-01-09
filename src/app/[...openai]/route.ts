@@ -48,6 +48,7 @@ async function getAIModelClient(provider: string, model: string) {
     }
     case "groq": {
       const groqClient = createOpenAI({
+        baseURL: "https://api.groq.com/openai/v1",
         apiKey: env.GROQ_API_KEY,
       });
       return groqClient(model);
@@ -56,6 +57,20 @@ async function getAIModelClient(provider: string, model: string) {
       return ollama("llama3.1");
     case "google-vertex":
       throw new Error("Google Vertex AI is not currently supported");
+    case "cerebras": {
+      const cerebrasClient = createOpenAI({
+        baseURL: "https://api.cerebras.ai/v1",
+        apiKey: env.CEREBRAS_API_KEY,
+        maxRetries: 3,
+        defaultQuery: {
+          max_tokens: 8192,
+        },
+        defaultHeaders: {
+          "Content-Type": "application/json",
+        },
+      });
+      return cerebrasClient(model);
+    }
     default:
       throw new Error(`Unsupported provider: ${provider}`);
   }
@@ -128,7 +143,7 @@ export async function POST(
     const streamTextOptions = {
       model: aiModel,
       messages: modifiedMessages,
-      maxTokens: ["anthropic", "anthropiccached"].includes(
+      maxTokens: ["anthropic", "anthropiccached", "cerebras"].includes(
         provider.toLowerCase(),
       )
         ? 8192
@@ -331,6 +346,8 @@ export async function GET(
     return testMistral();
   } else if (endpoint === "test/groq") {
     return testGroq();
+  } else if (endpoint === "test/cerebras") {
+    return testCerebras();
   }
 
   return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -423,9 +440,10 @@ async function testMistral() {
 async function testGroq() {
   try {
     const groqClient = createOpenAI({
+      baseURL: "https://api.groq.com/openai/v1",
       apiKey: env.GROQ_API_KEY,
     });
-    const model = groqClient("llama-3.1-70b-versatile");
+    const model = groqClient("llama-3.3-70b-versatile");
     const result = await generateText({
       model,
       messages: [{ role: "user", content: 'Say "Hello from Groq!"' }],
@@ -433,6 +451,24 @@ async function testGroq() {
     return NextResponse.json({ provider: "Groq", result });
   } catch (error) {
     console.error("Error testing Groq:", error);
+    return NextResponse.json({ error: String(error) }, { status: 500 });
+  }
+}
+
+async function testCerebras() {
+  try {
+    const cerebrasClient = createOpenAI({
+      baseURL: "https://api.cerebras.ai/v1",
+      apiKey: env.CEREBRAS_API_KEY,
+    });
+    const model = cerebrasClient("llama3.3-70b");
+    const result = await generateText({
+      model,
+      messages: [{ role: "user", content: 'Say "Hello from Cerebras!"' }],
+    });
+    return NextResponse.json({ provider: "Cerebras", result });
+  } catch (error) {
+    console.error("Error testing Cerebras:", error);
     return NextResponse.json({ error: String(error) }, { status: 500 });
   }
 }

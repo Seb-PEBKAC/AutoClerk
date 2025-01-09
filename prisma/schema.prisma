@@ -51,3 +51,10 @@ model ModelCost {
 
   @@unique([provider, model, validFrom])
 }
+
+enum Provider {
+  OPENAI
+  ANTHROPIC
+  GROQ
+  CEREBRAS
+}
